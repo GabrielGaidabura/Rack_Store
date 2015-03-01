@@ -19,7 +19,9 @@ class Static
     	#p "my path : "+name
     	case name
     	when /(\/\w+)*.css$/
-      		read_file(name, "text/css");
+      		read_file(name, "text/css")
+      	when /(\/\w+)*.jpg$/
+      		read_file(name, "image/jpeg")
       	else
       		@app.call(env)
       	end    		
