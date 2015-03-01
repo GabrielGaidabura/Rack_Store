@@ -1,0 +1,15 @@
+
+body {
+    background: #AFEEEE
+}
+
+p {
+    text-align: center
+}
+
+div {
+    border: 1px solid black; 
+    padding: 5px; 
+    margin-bottom: 5px; 
+} 
+
