@@ -7,7 +7,7 @@ class Ex_catcher
   		begin
   			@app.call(env)
   		rescue Exception => e
-  			[500, {"Content-Typ" => "text/html"}, [" Error in application " + e.message]]
+  			[500, {"Content-Typ" => "text/html"}, [" Error in application: " + e.message]]
   		end
   	end
 end

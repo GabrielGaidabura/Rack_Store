@@ -16,14 +16,14 @@ class Static
 
 	def call(env)
 		name = env['PATH_INFO']
-    	#p "my path : "+name
-    	case name
-    	when /(\/\w+)*.css$/
-      		read_file(name, "text/css")
-      	when /(\/\w+)*.jpg$/
-      		read_file(name, "image/jpeg")
-      	else
-      		@app.call(env)
+    	  	
+     	case name.split(".").last
+    		when "css"
+      			read_file(name, "text/css")
+      		when "jpg"
+      			read_file(name, "image/jpeg")
+      		else
+      			@app.call(env)
       	end    		
 	end
 end

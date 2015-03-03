@@ -1,11 +1,8 @@
 require_relative 'products.rb'
-require_relative 'layout.rb'
 
 class Store
-	include Layout
-
+	
  	def call(env)
-  		#[200, {"Content-Type" => "text/html"}, ["welcome"]]
   		request = Rack::Request.new(env)
   		status = 200
   		#raise 34 #make error
@@ -25,6 +22,6 @@ class Store
   			status = 404
   		end
 
-  		[status, {"Content-Type" => "text/html"}, [Layout.layout {content} ]]  			
+  		[status, {"Content-Type" => "text/html"}, [content]]  			
  	end
 end
