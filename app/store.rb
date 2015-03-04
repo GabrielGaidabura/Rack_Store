@@ -7,13 +7,17 @@ class Store
   		#raise 34 #make error
   		case request.path 
   		when "/"
-            ProductController.new(env).get_products
+            env['ProductController'] = ProductController
+            env['action'] = :get_products
         when /^\/(\w+)$/
             env['pr_find_name'] = $1
-            ProductController.new(env).get_product
-  		else
-  			ProductController.new(env).no_page
+            env['ProductController'] = ProductController
+            env['action'] = :get_product
+        else
+            env['ProductController'] = ProductController
+            env['action'] = :no_page
   		end
-	
+
+        env['ProductController'].new(env).send(env['action'])	
  	end
 end

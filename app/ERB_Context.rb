@@ -1,7 +1,7 @@
 # class ERB_Context
 # 	def initialize (hash)
 # 		hash.each do |k,v|
-# 			instance_variable_set("@" + k.to_s)
+# 			instance_variable_set("@" + k.to_s, v)
 # 		end
 # 	end
 

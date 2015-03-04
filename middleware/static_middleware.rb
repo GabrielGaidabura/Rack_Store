@@ -6,6 +6,7 @@ class Static
 	def read_file (file_name, type)
 		begin
 			file = File.open("public/" + file_name)
+			p "read file:"+"public/" + file_name
 			data = file.read
 			file.close
 			[200, {'Content-Type' => type}, [data]]
@@ -21,6 +22,8 @@ class Static
     		when "css"
       			read_file(name, "text/css")
       		when "jpg"
+      			read_file(name, "image/jpeg")
+      		when "ico"
       			read_file(name, "image/jpeg")
       		else
       			@app.call(env)

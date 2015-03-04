@@ -1,6 +1,8 @@
-class Template
-	def initialize(context)
-		@context = context
+require_relative "../ERB_Context.rb"
+
+class TemplateController
+	def initialize(hash)
+		@context = ERB_Context.new(hash)
 	end
 	def render(template, layout = nil)
 		view = ERB.new(File.read(template)).result(@context.get_binding)
