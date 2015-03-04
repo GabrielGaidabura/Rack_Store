@@ -1,5 +1,7 @@
+# includ utf-8
+#require_relative 'layout.rb'
 require_relative 'ERB_Context.rb'
-require_relative 'layout.rb'
+require_relative 'Template.rb'
 
 class Products
     @@products = []
@@ -36,16 +38,20 @@ class Products
 
     def to_html
         context = ERB_Context.new(:product => self)
-        layout = File.dirname(__FILE__)+"/erb/layout.html.erb"
-        template = File.dirname(__FILE__)+"/erb/product.html.erb"
-        Layout.render(layout, template, context)
+        layout = File.dirname(__FILE__)+"/view/layout.html.erb"
+        template = File.dirname(__FILE__)+"/view/product.html.erb"
+        #Layout.render(layout, template, context)
+        t = Template.new(context)
+        t.render(template,layout)
     end
 
     def self.to_html
         context = ERB_Context.new(:products => Products.all)
-        layout = File.dirname(__FILE__)+"/erb/layout.html.erb"
-        template = File.dirname(__FILE__)+"/erb/products.html.erb"
-        Layout.render(layout, template, context)
+        layout = File.dirname(__FILE__)+"/view/layout.html.erb"
+        template = File.dirname(__FILE__)+"/view/products.html.erb"
+        #Layout.render(layout, template, context)
+        t = Template.new(context)
+        t.render(template,layout)
     end
 end
 

@@ -1,27 +1,20 @@
-require_relative 'products.rb'
+#require_relative "controllers/product_controller.rb"
+require File.expand_path("controllers/product_controller.rb", File.dirname(__FILE__))
 
 class Store
-	
- 	def call(env)
+    def call(env)
   		request = Rack::Request.new(env)
   		status = 200
   		#raise 34 #make error
   		case request.path 
   		when "/"
-  			content = Products.to_html
-  		when /^\/(\w+)$/
-  			product = Products.find($1)
-  			if product
-  				content = product.to_html
-  			else
-  				content = "product not found"
-  				status = 404
-  			end
+            ProductController.new(env).get_products
+        when /^\/(\w+)$/
+            env['pr_find_name'] = $1
+            ProductController.new(env).get_product
   		else
-  			content = "page not found"
-  			status = 404
+  			ProductController.new(env).no_page
   		end
-
-  		[status, {"Content-Type" => "text/html"}, [content]]  			
+	
  	end
 end
