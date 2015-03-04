@@ -1,5 +1,5 @@
-# includ utf-8
-#require_relative 'layout.rb'
+# coding: utf-8
+
 require_relative 'ERB_Context.rb'
 require_relative 'Template.rb'
 

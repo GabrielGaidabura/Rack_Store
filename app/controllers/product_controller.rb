@@ -1,4 +1,4 @@
-require_relative 'products'
+require_relative "../products.rb"
 
 class ProductController
 
@@ -21,5 +21,11 @@ class ProductController
 	def get_products
 		content = Products.to_html   
         [200, {"Content-Type" => "text/html"}, [content]]
+	end
+
+	def no_page
+		content = "page not found"
+  		status = 404
+        [status, {"Content-Type" => "text/html"}, [content]]
 	end
 end

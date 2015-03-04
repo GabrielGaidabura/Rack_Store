@@ -1,5 +1,4 @@
-#require_relative "controllers/product_controller.rb"
-require File.expand_path("controllers/product_controller.rb", File.dirname(__FILE__))
+require_relative "controllers/product_controller.rb"
 
 class Store
     def call(env)
