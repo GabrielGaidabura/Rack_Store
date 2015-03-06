@@ -12,22 +12,10 @@ describe Products do
   	# альтернатива - subject
 
   	it "counts product" do
-    	#expect(described_class.count).to eq(0) #OR  expect(Product.count).to eq(0)
-   		#product1.save
-    	#expect(described_class.count).to eq(1)
-    	# OR
-    	# expect{Product.new("Name", 12)}.to change { Product.count }.by(1)
     	expect { product1.save }.to change { Products.count }.from(0).to(1)
   	end
 
   	it "all product" do
-    	# expect(described_class.all).to eq([])
-    	# product1.save
-    	# expect(described_class.all).to eq([product1])
-    	# product2.save
-    	# expect(described_class.all).to eq([product1, product2])
-    	# expect{product2.save}.to change{product.all.include?(product)}.to(true)
-
     	expect { product1.save }.to change { Products.all }.from([]).to([product1])
     	expect { product2.save }.to change { described_class.all }.from([product1]).to([product1, product2])
   	end
