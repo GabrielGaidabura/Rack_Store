@@ -8,10 +8,12 @@ class Session
 	end
 
 	def call(env)
-		token = env['HTTP_COOKIE']
+		# сделать распознавание по имени
+		token = env['HTTP_COOKIE'].split("=").last if env['HTTP_COOKIE']
+				
 		visit = Time.now
 
-		unless token
+		if ( !token || !@@session[token])
 			token = generate_token
 			@@session[token] = {"last_visit_time"=>"#{visit}", "visit_counter"=>0}
 		end
@@ -21,7 +23,7 @@ class Session
 
 		env['session'] = @@session[token]
 		status, headers, body = @app.call(env)
-		[status, headers.merge({"Set-Cookie"=>"#{token}; path=/"}), body]
+		[status, headers.merge({"Set-Cookie"=>"key=#{token}; path=/"}), body]
 	end
 
 	private

@@ -18,6 +18,7 @@ class Store
             env['action'] = :no_page
   		end
 
-        env['ProductController'].new(env).send(env['action'])	
+      env['ProductController'].new(env).send(env['action'])	
+      #env['ProductController'].new(env).call(env) 
  	end
 end

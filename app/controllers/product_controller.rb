@@ -4,6 +4,10 @@ class ProductController
 
 	def initialize(env)
 		@env = env
+		#@status = 200
+		#@headers = {"Content-Type" => "text/html"}
+		#@body = [""]
+		#@layout = File.dirname(__FILE__)+"../view/layout.html.erb"
 	end
 
 	def get_product
@@ -19,9 +23,9 @@ class ProductController
 	end
 
 	def get_products
-		visit_counter = env["session"]["visit_counter"]
-		last_visit_time = env["session"]["last_visit_time"]
-
+		visit_counter = @env["session"]["visit_counter"]
+		last_visit_time = @env["session"]["last_visit_time"]
+		
 		content = Products.to_html(visit_counter, last_visit_time)   
         [200, {"Content-Type" => "text/html"}, [content]]
 	end
@@ -31,4 +35,10 @@ class ProductController
   		status = 404
         [status, {"Content-Type" => "text/html"}, [content]]
 	end
+
+	# def call(env)
+	# 	@env = env
+	# 	send (env["action"])
+	# 	[status, {"Content-Type" => "text/html"}, [content]]
+	# end
 end
