@@ -7,8 +7,8 @@
       <link rel="icon" href="img/favicon.ico">
    </head>
    <body>
-      <div class="counter">
-         <% if @counter && @visit %>
+      <div class="visit_&_counter">
+         <% if @visit && @counter %>
             Visit counter: <%= @counter %> 
             Last visit: <%= @visit %>
          <% end %>
