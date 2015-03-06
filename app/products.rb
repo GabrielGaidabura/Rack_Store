@@ -35,12 +35,12 @@ class Products
         @@products.detect { |e| e.name == name }
     end
 
-    def to_html
+    def to_html(visit_counter = nil, last_visit_time = nil)
         template = File.dirname(__FILE__)+"/view/product.html.erb"
         layout = File.dirname(__FILE__)+"/view/layout.html.erb"
                 
-        t = TemplateController.new(:product => self)
-        t.render(template,layout)
+        t = TemplateController.new(:product => self, :counter => visit_counter, :visit => visit_time)
+        t.render(template,layout) 
     end
 
     def self.to_html

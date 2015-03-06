@@ -19,7 +19,10 @@ class ProductController
 	end
 
 	def get_products
-		content = Products.to_html   
+		visit_counter = env["session"]["visit_counter"]
+		last_visit_time = env["session"]["last_visit_time"]
+
+		content = Products.to_html(visit_counter, last_visit_time)   
         [200, {"Content-Type" => "text/html"}, [content]]
 	end
 

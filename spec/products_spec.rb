@@ -35,4 +35,8 @@ describe Products do
   	it "find product" do
     	expect { product1.save }.to change { described_class.find("name1") }.from(nil).to(product1)
   	end
+
+  	it "save product" do
+  		expect { product1.save }.to change {described_class.all}.from([]).to([product1])
+  	end
 end

@@ -13,3 +13,7 @@ div {
     margin-bottom: 5px; 
 } 
 
+.counter {
+ 	float: left;
+}
+

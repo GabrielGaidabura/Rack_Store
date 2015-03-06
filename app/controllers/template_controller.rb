@@ -1,4 +1,5 @@
 require_relative "../ERB_Context.rb"
+require "erb"
 
 class TemplateController
 	def initialize(hash)
