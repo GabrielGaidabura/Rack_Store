@@ -1,0 +1,26 @@
+<div>
+   <p> Your cart </p>
+</div>
+<div>
+   <% if @products.size > 0 %>
+      <% @products.each do |product| %>
+      <p> <%= @product.full_name %> </p>
+      <p> Price: <%= @product.price %> </p>
+      <form method="POST" action="/cart">
+         <input name="del_pr_name" value="<%= product.name_id %>" type="hidden">
+         <input type="submit" value="Delete product">
+      </form>
+      <p> ------------------------------------------------------------------ </p>
+      <p> Total price: <% @total_price %> </p>
+      <p> ------------------------------------------------------------------ </p>
+      <form method="POST" action="/cart">
+         <input name="clear" type="hidden">
+         <input type="submit" value="Remove all products">
+      </form>
+   <% else %>
+      <p> Your cart is empty </p>
+   <% end %>
+</div>
+<div>
+   <p> <a href='/'> Main page </a></p>
+</div>

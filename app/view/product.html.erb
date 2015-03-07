@@ -1,5 +1,13 @@
 <div>
-   <p> <a href='<%= @product.name %>'><%= @product.full_name %></a></p>
+   <p> <%= @product.full_name %> </p>
    <p> Price: <%= @product.price %> </p>
    <p> <img src='<%= @product.img %>'> <%= @product.desc %></p>
+
+   <form method="POST" action="/cart">
+      <input name="add_pr_name" value="<%= @product.name_id %>" type="hidden">
+      <input type="submit" value="Add to cart">
+   </form>
+</div>
+<div>
+   <p> <a href='/'> Main page </a></p>
 </div>

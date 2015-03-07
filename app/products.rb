@@ -5,14 +5,14 @@ require_relative 'controllers/template_controller.rb'
 class Products
     @@products = []
 
-    attr_reader :name
+    attr_reader :name_id
     attr_reader :full_name
     attr_reader :desc
     attr_reader :price
     attr_reader :img
 
-    def initialize(name, full_name, desc, price, img)
-        @name, @full_name, @desc, @price, @img = name, full_name, desc, price, img
+    def initialize(name_id, full_name, desc, price, img)
+        @name_id, @full_name, @desc, @price, @img = name_id, full_name, desc, price, img
     end
 
     def save
@@ -32,7 +32,7 @@ class Products
     end
 
     def self.find (name)
-        @@products.detect { |e| e.name == name }
+        @@products.detect { |e| e.name_id == name }
     end
 
     def to_html

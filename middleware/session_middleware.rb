@@ -9,7 +9,9 @@ class Session
 
 	def call(env)
 		# сделать распознавание по имени
-		token = env['HTTP_COOKIE'].split("=").last if env['HTTP_COOKIE']
+		#token = env['HTTP_COOKIE'].split("=").last if env['HTTP_COOKIE']
+		request = Rack::Request.new(env)
+		token = request.cookies["THE_TOKEN"]
 				
 		visit = Time.now
 
@@ -23,7 +25,7 @@ class Session
 
 		env['session'] = @@session[token]
 		status, headers, body = @app.call(env)
-		[status, headers.merge({"Set-Cookie"=>"key=#{token}; path=/"}), body]
+		[status, headers.merge({"Set-Cookie"=>"THE_TOKEN=#{token}; path=/"}), body]
 	end
 
 	private
