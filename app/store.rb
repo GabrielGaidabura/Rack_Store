@@ -16,8 +16,7 @@ class Store
             env['action'] = :get_product
         when "/cart"
             env['controller'] = CartController
-            if reqest.post?
-                p "requst.params add pr name:"+request.params['add_pr_name']
+            if request.post?
                 env['add_product'] = request.params['add_pr_name']
                 env['delete_product'] = request.params['del_pr_name']
                 env['clear_the_cart'] = request.params['clear']

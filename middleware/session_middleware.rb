@@ -20,7 +20,7 @@ class Session
 			@@session[token] = {"last_visit_time"=>"#{visit}", "visit_counter"=>0}
 		end
 
-		@@session[token]["visit_counter"] = @@session[token]["visit_counter"]+1
+		@@session[token]["visit_counter"] += 1
 		@@session[token]["last_visit_time"] = "#{visit}"
 
 		env['session'] = @@session[token]
