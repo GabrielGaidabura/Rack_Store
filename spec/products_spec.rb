@@ -11,6 +11,10 @@ describe Products do
   	let(:product2) { described_class.new("name2", "full_name2", "desc2", 222, "img/img2.jpg") }
   	# альтернатива - subject
 
+    it "save product" do
+        expect { product1.save }.to change {described_class.all}.from([]).to([product1])
+    end
+
   	it "counts product" do
     	expect { product1.save }.to change { Products.count }.from(0).to(1)
   	end
@@ -22,9 +26,5 @@ describe Products do
 
   	it "find product" do
     	expect { product1.save }.to change { described_class.find("name1") }.from(nil).to(product1)
-  	end
-
-  	it "save product" do
-  		expect { product1.save }.to change {described_class.all}.from([]).to([product1])
   	end
 end
