@@ -34,7 +34,7 @@ class Cart
 			if @products[product] > 1
 				@products[product] -= 1
 			else
-				@products[product].delete
+				@products.delete(product)
 			end
 		end
 	end

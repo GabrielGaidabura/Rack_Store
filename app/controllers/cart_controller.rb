@@ -14,7 +14,7 @@ class CartController
 			product = @env['add_product']
 			cart.add(Products.find(product))
 		elsif @env['delete_product']
-			product = @env['add_product']
+			product = @env['delete_product']
 			cart.delete(Products.find(product))
 		elsif @env['clear_the_cart']
 			cart.clear_the_cart
