@@ -6,14 +6,10 @@ class Store
   		request = Rack::Request.new(env)
   		status = 200
   		#raise 34 #make error
-  		case request.path 
+        case request.path 
   		when "/"
             env['controller'] = ProductController
             env['action'] = :get_products
-        when /^\/(\w+)$/
-            env['pr_find_name'] = $1
-            env['controller'] = ProductController
-            env['action'] = :get_product
         when "/cart"
             env['controller'] = CartController
             if request.post?
@@ -24,6 +20,10 @@ class Store
             else
                 env['action'] = :cart_get
             end
+        when /^\/(\w+)$/
+            env['pr_find_name'] = $1
+            env['controller'] = ProductController
+            env['action'] = :get_product
         else
             env['controller'] = ProductController
             env['action'] = :no_page

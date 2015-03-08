@@ -7,15 +7,15 @@ class CartController
 	end
 
 	def cart_post
-		unless @env['session']['cart']
-			@env['session']<<{'cart'=>Cart.new}
-		end
+		@env['session']['cart'] = Cart.new unless @env['session']['cart']
 		cart = @env['session']['cart']
 
 		if @env['add_product']
-			cart.add(Products.find(@env['add_product']))
+			product = @env['add_product']
+			cart.add(Products.find(product))
 		elsif @env['delete_product']
-			cart.delete(Products.find(@env['add_product']))
+			product = @env['add_product']
+			cart.delete(Products.find(product))
 		elsif @env['clear_the_cart']
 			cart.clear_the_cart
 		end
@@ -25,9 +25,7 @@ class CartController
 	end
 
 	def cart_get
-		unless @env['session']['cart']
-			@env['session']<<{'cart'=>Cart.new}
-		end
+		@env['session']['cart'] = Cart.new unless @env['session']['cart']
 		cart = @env['session']['cart']
 
 		content = cart.to_html

@@ -1,15 +1,17 @@
 require_relative 'controllers/template_controller.rb'
 
 class Cart
-	@products = {}
-	@total_price = 0
-
+	attr_reader :products
+	attr_reader :total_price
+	
 	def initialize
+		@products = {}
+		@total_price = 0
 	end
 
-	def save
-		@products << self
-	end
+	# def save
+	# 	@products << self
+	# end
 
 	def contents
 		@products
@@ -39,6 +41,7 @@ class Cart
 
 	def clear_the_cart
 		@products = {}
+		@total_price = 0
 	end
 
 	def total_price
@@ -49,7 +52,7 @@ class Cart
 		template = File.dirname(__FILE__)+"/view/cart.html.erb"
 		layout = File.dirname(__FILE__)+"/view/layout.html.erb"
 
-		template = TemplateController.new(:products => @products, :total_price => @total_price)
+		t = TemplateController.new(:products => @products, :total_price => @total_price)
 		t.render(template,layout)
 	end
 end
