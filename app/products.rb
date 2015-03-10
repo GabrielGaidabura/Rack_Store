@@ -17,6 +17,7 @@ class Products
 
     def save
         @@products << self
+        self
     end
 
     def self.count

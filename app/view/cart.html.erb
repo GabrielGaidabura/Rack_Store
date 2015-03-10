@@ -19,6 +19,11 @@
          <input name="clear" type="hidden">
          <input type="submit" value="Remove all products">
       </form>
+      <p> ------------------------------------------------------------------ </p>
+      <form method="POST" action="/order">
+         <input name="create_an_order" type="hidden">
+         <input type="submit" value="Create an order">
+      </form>
    <% else %>
       <p> Your cart is empty </p>
    <% end %>

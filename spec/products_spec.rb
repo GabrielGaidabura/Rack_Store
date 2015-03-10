@@ -24,6 +24,11 @@ describe Products do
     	expect { product2.save }.to change { described_class.all }.from([product1]).to([product1, product2])
   	end
 
+    it "purge product" do
+        expect { product1.save }.to change {described_class.all}.from([]).to([product1])
+        expect { described_class.purge }.to change {described_class.all}.from([product1]).to([])
+    end
+
   	it "find product" do
     	expect { product1.save }.to change { described_class.find("name1") }.from(nil).to(product1)
   	end

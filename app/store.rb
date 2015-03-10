@@ -1,5 +1,6 @@
 require_relative "controllers/product_controller.rb"
 require_relative "controllers/cart_controller.rb"
+require_relative "controllers/order_controller.rb"
 
 class Store
     def call(env)
@@ -19,6 +20,15 @@ class Store
                 env['action'] = :cart_post
             else
                 env['action'] = :cart_get
+            end
+        when "/order"
+            env['controller'] = OrderController
+            if request.post?
+                env['create_an_order'] = request.params['create_an_order']
+                env['complete_an_order'] = request.params['complete_an_order']
+                env['action'] = :order_post
+            else
+                env['action'] = :order_get
             end
         when /^\/(\w+)$/
             env['pr_find_name'] = $1

@@ -9,10 +9,6 @@ class Cart
 		@total_price = 0
 	end
 
-	# def save
-	# 	@products << self
-	# end
-
 	def contents
 		@products
 	end

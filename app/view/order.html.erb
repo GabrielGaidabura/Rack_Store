@@ -1,0 +1,24 @@
+<div>
+   <p> Your ORDER </p>
+</div>
+<div>
+   <% if @products.size > 0 %>
+      <p> Your order id = <%= @order_id %></p>
+      <p> Your choise: </p>
+      <% @products.each do |product, count| %>
+         <p> <%= product.full_name %> x<%= count %></p>
+      <% end %>
+      <form method="POST" action="/order">
+         <input name="complete_an_order" value="<%= @order_id %>" type="hidden">
+         Your name: <input type="text" name="o_name"><br>
+         Your email: <input type="text" name="o_email"><br>
+         Your phone number: <input type="text" name="o_phone"><br>
+         <input type="submit" value="Complete an order">
+      </form>
+   <% else %>
+      <p> Your cart is empty. Or you get wrong url-link. </p>
+   <% end %>
+</div>
+<div>
+   <p> <a href='/'>( Home page )</a></p>
+</div>
